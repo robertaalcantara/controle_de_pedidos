@@ -3,13 +3,15 @@ package model;
 public class Produto {
     private int codProduto, codCategoria;
     private String nome;
+    private double precoUnitario;
 
     public Produto(){}
 
-    public Produto(int codProduto, int codCategoria, String nome) {
+    public Produto(int codProduto, int codCategoria, String nome, double precoUnitario) {
         this.codProduto = codProduto;
         this.codCategoria = codCategoria;
         this.nome = nome;
+        this.precoUnitario = precoUnitario;
     }
 
     public int getCodProduto() {
@@ -34,5 +36,13 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public double getPrecoUnitario() {
+        return precoUnitario;
+    }
+
+    public void setPrecoUnitario(double precoUnitario) {
+        this.precoUnitario = precoUnitario;
     }
 }
