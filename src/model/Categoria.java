@@ -1,8 +1,8 @@
 package model;
 
 public class Categoria {
-    int codCategoria;
-    String nome;
+    private int codCategoria;
+    private String nome;
 
     public Categoria(int codCategoria, String nome) {
         this.codCategoria = codCategoria;
