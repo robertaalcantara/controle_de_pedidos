@@ -1,10 +1,7 @@
 package controller;
 
 import dao.*;
-import model.Categoria;
-import model.Cliente;
-import model.Crediario;
-import model.Endereco;
+import model.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,23 +10,23 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-       ArrayList<Categoria> lista = null;
-       Categoria categoria = new Categoria();
-       CategoriaDao daoCategoria = new CategoriaDao();
-       int codCategoria;
+       ArrayList<Produto> lista = null;
+        Produto produto = new Produto();
+        ProdutoDao daoProduto = new ProdutoDao();
+       int codProduto;
 
-       daoCategoria.excluirCategoria(7);
+       daoProduto.excluirProduto(37);
 
-       //categoria.setCodCategoria(codCategoria);
-       //categoria.setNome("blablabla");
-       //daoCategoria.alterarCategoria(categoria);
-       lista = daoCategoria.listarCategorias();
+       lista = daoProduto.listarProdutosPorCategoria(5);
 
        // System.out.println(categoria.getCodCategoria()+", "+ categoria.getNome());
 
 
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i).getCodCategoria() + ", " +
+            System.out.println(
+                    lista.get(i).getCodProduto() + ", " +
+                    lista.get(i).getCodCategoria() + ", " +
+                    lista.get(i).getPrecoUnitario() + ", " +
                     lista.get(i).getNome()+ ". \n ");
         }
     }
