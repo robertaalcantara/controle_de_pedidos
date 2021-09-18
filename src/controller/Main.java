@@ -10,24 +10,23 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-       ArrayList<Produto> lista = null;
-        Produto produto = new Produto();
-        ProdutoDao daoProduto = new ProdutoDao();
-       int codProduto;
+       ArrayList<Item> lista = null;
+       Item item = new Item();
+       ItemDao daoItem = new ItemDao();
+       int codItem;
 
-       daoProduto.excluirProduto(37);
 
-       lista = daoProduto.listarProdutosPorCategoria(5);
+       daoItem.excluirItem(31);
 
-       // System.out.println(categoria.getCodCategoria()+", "+ categoria.getNome());
-
+       lista = daoItem.listarItens();
 
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(
+                    lista.get(i).getCodItem() + ", " +
                     lista.get(i).getCodProduto() + ", " +
-                    lista.get(i).getCodCategoria() + ", " +
+                    lista.get(i).getQtd() + ", " +
                     lista.get(i).getPrecoUnitario() + ", " +
-                    lista.get(i).getNome()+ ". \n ");
+                    lista.get(i).getObservacao()+ ". \n ");
         }
     }
 }
