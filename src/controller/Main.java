@@ -2,8 +2,10 @@ package controller;
 
 import dao.ClienteDao;
 import dao.Conexao;
+import dao.CrediarioDao;
 import dao.EnderecoDao;
 import model.Cliente;
+import model.Crediario;
 import model.Endereco;
 
 import java.math.BigDecimal;
@@ -13,54 +15,22 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-       /* EnderecoDao daoEndereco = new EnderecoDao();
-        Endereco endereco = new Endereco();
-        int codEndereco;
+       ArrayList<Crediario> lista = null;
+       Crediario crediario = new Crediario();
+       CrediarioDao daoCrediario = new CrediarioDao();
 
-        //endereco.setCodEndereco(13);
-        endereco.setRua("Nereu Ramos");
-        endereco.setBairro("Claudete");
-        endereco.setNumero(3111);
-        endereco.setComplemento("fundos");
-        endereco.setFrete(3.50);
+       //crediario.setCodCliente(8);
+       //crediario.setSaldoDevedor(60.00);
 
-        codEndereco = daoEndereco.buscarCodEndereco(endereco);
-        System.out.println(codEndereco);
-        System.out.println(endereco.getCodEndereco()+", "+
-                endereco.getRua()+", "+
-                endereco.getComplemento()+", "+
-                endereco.getFrete()+". \n ");
-       ArrayList<Endereco> lista = null;
+       crediario = daoCrediario.buscarCrediarioCliente(8);
 
-        lista = daoEndereco.listarEnderecos();
+        System.out.println(crediario.getCodCliente()+", "+ crediario.getSaldoDevedor());
 
-       for(int i=0; i<lista.size(); i++) {
-            System.out.println(lista.get(i).getCodEndereco()+", "+
-                    lista.get(i).getRua()+", "+
-                    lista.get(i).getComplemento()+", "+
-                    lista.get(i).getFrete()+". \n ");
-        }*/
-        Cliente cliente = new Cliente();
-        ClienteDao daoCliente = new ClienteDao();
-        ArrayList<Cliente> lista = null;
-        int codCli;
-
-        cliente.setCodCliente(8);
-        cliente.setNome("Roberta S. Alcantara");
-        cliente.setTelefone("(45) 99745-2966");
-        cliente.setCodEndereco(1);
-
-        //daoCliente.alterarCliente(cliente);
-        lista = daoCliente.listarClientes();
-
-        //System.out.println(codCli);
+      /* lista = daoCrediario.listarCrediarioClientes();
 
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i).getCodEndereco() + ", " +
-                    lista.get(i).getCodCliente() + ", " +
-                    lista.get(i).getNome() + ", " +
-                    lista.get(i).getCodEndereco() + ", " +
-                    lista.get(i).getTelefone() + ". \n ");
-        }
+            System.out.println(lista.get(i).getCodCliente() + ", " +
+                    lista.get(i).getSaldoDevedor() + ". \n ");
+        }*/
     }
 }
