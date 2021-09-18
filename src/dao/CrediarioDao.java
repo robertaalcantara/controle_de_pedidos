@@ -1,8 +1,6 @@
 package dao;
 
-import model.Cliente;
 import model.Crediario;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +19,6 @@ public class CrediarioDao {
         PreparedStatement stmt;
         try {
             con = Conexao.getConnection();
-
 
             sql = "INSERT INTO crediario (cod_cliente, saldo_devedor) VALUES (?, ?)";
             stmt = con.prepareStatement(sql);

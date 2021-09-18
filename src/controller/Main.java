@@ -1,9 +1,7 @@
 package controller;
 
-import dao.ClienteDao;
-import dao.Conexao;
-import dao.CrediarioDao;
-import dao.EnderecoDao;
+import dao.*;
+import model.Categoria;
 import model.Cliente;
 import model.Crediario;
 import model.Endereco;
@@ -15,22 +13,24 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-       ArrayList<Crediario> lista = null;
-       Crediario crediario = new Crediario();
-       CrediarioDao daoCrediario = new CrediarioDao();
+       ArrayList<Categoria> lista = null;
+       Categoria categoria = new Categoria();
+       CategoriaDao daoCategoria = new CategoriaDao();
+       int codCategoria;
 
-       //crediario.setCodCliente(8);
-       //crediario.setSaldoDevedor(60.00);
+       daoCategoria.excluirCategoria(7);
 
-       crediario = daoCrediario.buscarCrediarioCliente(8);
+       //categoria.setCodCategoria(codCategoria);
+       //categoria.setNome("blablabla");
+       //daoCategoria.alterarCategoria(categoria);
+       lista = daoCategoria.listarCategorias();
 
-        System.out.println(crediario.getCodCliente()+", "+ crediario.getSaldoDevedor());
+       // System.out.println(categoria.getCodCategoria()+", "+ categoria.getNome());
 
-      /* lista = daoCrediario.listarCrediarioClientes();
 
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i).getCodCliente() + ", " +
-                    lista.get(i).getSaldoDevedor() + ". \n ");
-        }*/
+            System.out.println(lista.get(i).getCodCategoria() + ", " +
+                    lista.get(i).getNome()+ ". \n ");
+        }
     }
 }
