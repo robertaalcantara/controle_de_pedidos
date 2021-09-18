@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Time;
+
 public class Pedido {
     //tempo = tempo para o pedido ser entregue em minutos
     private int codPedido, tempo;

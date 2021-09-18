@@ -3,30 +3,45 @@ package controller;
 import dao.*;
 import model.*;
 
-import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
-       ArrayList<Item> lista = null;
-       Item item = new Item();
-       ItemDao daoItem = new ItemDao();
+       ArrayList<Caixa> lista = null;
+       Caixa caixa = new Caixa();
+       CaixaDao daoCaixa = new CaixaDao();
        int codItem;
 
+        String dataString = "25/04/2021";
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        java.sql.Date data = new java.sql.Date(format.parse(dataString).getTime());
 
-       daoItem.excluirItem(31);
+        caixa = daoCaixa.buscarCaixa(data);
 
-       lista = daoItem.listarItens();
+        System.out.println(
+                caixa.getData() + ", " +
+                        caixa.getValorTotal() + ", " +
+                        caixa.getValorIfood() + ", " +
+                        caixa.getValorDinheiro() + ", " +
+                        caixa.getValorDebito() + ", " +
+                        caixa.getValorCredito() + ", " +
+                        caixa.getValorCrediario()+ ". \n ");
+
+      /* lista = daoCaixa.listarCaixas();
 
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(
-                    lista.get(i).getCodItem() + ", " +
-                    lista.get(i).getCodProduto() + ", " +
-                    lista.get(i).getQtd() + ", " +
-                    lista.get(i).getPrecoUnitario() + ", " +
-                    lista.get(i).getObservacao()+ ". \n ");
-        }
+                    lista.get(i).getData() + ", " +
+                    lista.get(i).getValorTotal() + ", " +
+                    lista.get(i).getValorIfood() + ", " +
+                    lista.get(i).getValorDinheiro() + ", " +
+                    lista.get(i).getValorDebito() + ", " +
+                    lista.get(i).getValorCredito() + ", " +
+                    lista.get(i).getValorCrediario()+ ". \n ");
+        }*/
     }
 }
