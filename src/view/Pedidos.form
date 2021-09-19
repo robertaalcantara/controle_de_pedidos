@@ -48,6 +48,18 @@
               <text value="Clientes"/>
             </properties>
           </component>
+          <component id="3a3b0" class="javax.swing.JToolBar$Separator">
+            <constraints/>
+            <properties>
+              <separatorSize width="20" height="10"/>
+            </properties>
+          </component>
+          <component id="e2fcd" class="javax.swing.JButton" binding="crediárioButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Crediário"/>
+            </properties>
+          </component>
           <component id="ec920" class="javax.swing.JToolBar$Separator">
             <constraints/>
             <properties>
@@ -87,7 +99,7 @@
           <component id="2793d" class="javax.swing.JToolBar$Separator">
             <constraints/>
             <properties>
-              <separatorSize width="650" height="10"/>
+              <separatorSize width="600" height="10"/>
             </properties>
           </component>
           <component id="e8bb7" class="javax.swing.JButton" binding="fazerPedidoButton" default-binding="true">

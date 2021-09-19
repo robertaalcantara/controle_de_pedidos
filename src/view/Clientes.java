@@ -21,6 +21,7 @@ public class Clientes {
     private JButton cadastrarClienteButton;
     private JList list1;
     private JButton alterarClienteButton;
+    private JButton crediárioButton;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

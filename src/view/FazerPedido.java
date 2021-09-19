@@ -19,4 +19,6 @@ public class FazerPedido {
     private JButton adicionarButton;
     private JButton excluirButton;
     private JList list2;
+    private JComboBox comboBox3;
+    private JButton crediárioButton;
 }
