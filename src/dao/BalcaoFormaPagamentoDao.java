@@ -1,16 +1,17 @@
 package dao;
 
 import model.PedidoFormaPagamento;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DeliveryFormaPagamentoDao {
+public class BalcaoFormaPagamentoDao {
     private Connection con = null;
 
-    public DeliveryFormaPagamentoDao(){
+    public BalcaoFormaPagamentoDao(){
         con = Conexao.getConnection();
     }
 
@@ -20,7 +21,7 @@ public class DeliveryFormaPagamentoDao {
         try {
             con = Conexao.getConnection();
 
-            sql = "INSERT INTO delivery_forma_pagamento (cod_forma_pagamento, valor, data_caixa, cod_pedido, finalizado) VALUES (?, ?, ?, ?, ?)";
+            sql = "INSERT INTO balcao_forma_pagamento (cod_forma_pagamento, valor, data_caixa, cod_pedido, finalizado) VALUES (?, ?, ?, ?, ?)";
             stmt = con.prepareStatement(sql);
 
             stmt.setInt(1, pedidoFormaPagamento.getCodFormaPagamento());
@@ -30,7 +31,7 @@ public class DeliveryFormaPagamentoDao {
             stmt.setBoolean(5, pedidoFormaPagamento.isFinalizado());
 
             stmt.execute();
-            System.out.println("\nPedido delivery/forma pagamento adicionado no Banco de Dados\n");
+            System.out.println("\nPedido balcao/forma pagamento adicionado no Banco de Dados\n");
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -42,7 +43,7 @@ public class DeliveryFormaPagamentoDao {
     public ArrayList<PedidoFormaPagamento> listarPedidosFormaPagamento(){
         ArrayList<PedidoFormaPagamento> listaPedidosFormaPagamento = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_forma_pagamento";
+        String sql = "SELECT * FROM balcao_forma_pagamento";
 
         try {
             con = Conexao.getConnection();
@@ -74,7 +75,7 @@ public class DeliveryFormaPagamentoDao {
     public ArrayList<PedidoFormaPagamento> listarPedidoPorFormaPagamento(int codFormaPagamento){
         ArrayList<PedidoFormaPagamento> listaPedidosFormaPagamento = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_forma_pagamento WHERE cod_forma_pagamento = " + codFormaPagamento;
+        String sql = "SELECT * FROM balcao_forma_pagamento WHERE cod_forma_pagamento = " + codFormaPagamento;
 
         try {
             con = Conexao.getConnection();
@@ -106,7 +107,7 @@ public class DeliveryFormaPagamentoDao {
     public ArrayList<PedidoFormaPagamento> listarPedidoFormaPagamentoPorStatus(boolean finalizado){
         ArrayList<PedidoFormaPagamento> listaPedidosFormaPagamento = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_forma_pagamento WHERE finalizado = " + finalizado;
+        String sql = "SELECT * FROM balcao_forma_pagamento WHERE finalizado = " + finalizado;
 
         try {
             con = Conexao.getConnection();
@@ -137,7 +138,7 @@ public class DeliveryFormaPagamentoDao {
     public ArrayList<PedidoFormaPagamento> buscarFormasPagamentoPorPedido(int codPedido){
         ArrayList<PedidoFormaPagamento> listaPedidosFormaPagamento = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_forma_pagamento WHERE cod_pedido = " + codPedido;
+        String sql = "SELECT * FROM balcao_forma_pagamento WHERE cod_pedido = " + codPedido;
 
         try {
             con = Conexao.getConnection();
@@ -173,7 +174,7 @@ public class DeliveryFormaPagamentoDao {
         try {
             con = Conexao.getConnection();
 
-            sql = "DELETE FROM delivery_forma_pagamento " +
+            sql = "DELETE FROM balcao_forma_pagamento " +
                     "WHERE cod_forma_pagamento = "+ codFormaPagamento +
                     " AND cod_pedido = " + codPedido;
             stmt = con.prepareStatement(sql);
