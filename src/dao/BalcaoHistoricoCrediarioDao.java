@@ -1,6 +1,5 @@
 package dao;
 
-import model.Delivery;
 import model.HistoricoCrediario;
 
 import java.sql.Connection;
@@ -9,20 +8,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class HistoricoCrediarioDao {
+public class BalcaoHistoricoCrediarioDao {
     private Connection con = null;
 
-    public HistoricoCrediarioDao(){
+    public BalcaoHistoricoCrediarioDao(){
         con = Conexao.getConnection();
     }
 
-    public void criarHistoricoCrediario(HistoricoCrediario  historicoCrediario){
+    public void criarHistoricoCrediario(HistoricoCrediario historicoCrediario){
         String sql = "";
         PreparedStatement stmt;
         try {
             con = Conexao.getConnection();
 
-            sql = "INSERT INTO delivery_historico_crediario (cod_cliente, valor_crediario_pedido, data, cod_pedido) VALUES (?, ?, ?, ?)";
+            sql = "INSERT INTO balcao_historico_crediario (cod_cliente, valor_crediario_pedido, data, cod_pedido) VALUES (?, ?, ?, ?)";
             stmt = con.prepareStatement(sql);
 
             stmt.setInt(1, historicoCrediario.getCodCliente());
@@ -31,7 +30,7 @@ public class HistoricoCrediarioDao {
             stmt.setInt(4, historicoCrediario.getCodPedido());
 
             stmt.execute();
-            System.out.println("\nHistorico crediario delivery adicionado no Banco de Dados\n");
+            System.out.println("\nHistorico crediario balcao adicionado no Banco de Dados\n");
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -43,7 +42,7 @@ public class HistoricoCrediarioDao {
     public ArrayList<HistoricoCrediario> listarHistoricoCrediario(){
         ArrayList<HistoricoCrediario> listaHistoricoCrediario = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_historico_crediario";
+        String sql = "SELECT * FROM balcao_historico_crediario";
 
         try {
             con = Conexao.getConnection();
@@ -75,7 +74,7 @@ public class HistoricoCrediarioDao {
     public ArrayList<HistoricoCrediario> listarHistoricoCrediarioPorCliente(int codCliente){
         ArrayList<HistoricoCrediario> listaHistoricoCrediario = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_historico_crediario WHERE cod_cliente = " + codCliente;
+        String sql = "SELECT * FROM balcao_historico_crediario WHERE cod_cliente = " + codCliente;
 
         try {
             con = Conexao.getConnection();
@@ -108,7 +107,7 @@ public class HistoricoCrediarioDao {
     public HistoricoCrediario buscarHistoricoCrediario(int idCrediario){
         HistoricoCrediario historicoCrediario = new HistoricoCrediario();
 
-        String sql = "SELECT * FROM delivery_historico_crediario WHERE id_crediario = "+ idCrediario;
+        String sql = "SELECT * FROM balcao_historico_crediario WHERE id_crediario = "+ idCrediario;
 
         try {
             con = Conexao.getConnection();
@@ -140,7 +139,7 @@ public class HistoricoCrediarioDao {
         try {
             con = Conexao.getConnection();
 
-            sql = "UPDATE delivery_historico_crediario " +
+            sql = "UPDATE balcao_historico_crediario " +
                     "SET cod_cliente=?, cod_pedido=?, valor_crediario_pedido=?, data=? " +
                     "WHERE id_crediario= "+ historicoCrediario.getIdCrediario();
             stmt = con.prepareStatement(sql);

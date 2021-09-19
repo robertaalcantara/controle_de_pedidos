@@ -2,25 +2,17 @@ package controller;
 
 import dao.*;
 import model.*;
-import view.Pedidos;
 
-import javax.swing.*;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.sql.Date;
-import java.util.SimpleTimeZone;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
 
        ArrayList<HistoricoCrediario> lista = null;
        HistoricoCrediario historicoCrediario = new HistoricoCrediario();
-       HistoricoCrediarioDao daoHistoricoCrediario = new HistoricoCrediarioDao();
+       DeliveryHistoricoCrediarioDao daoHistoricoCrediario = new DeliveryHistoricoCrediarioDao();
 
        int cod;
        String nome;
