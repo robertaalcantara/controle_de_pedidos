@@ -1,7 +1,6 @@
 package dao;
 
 import model.Caixa;
-import model.Produto;
 import java.sql.*;
 import java.util.ArrayList;
 
