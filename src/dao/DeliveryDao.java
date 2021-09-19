@@ -1,34 +1,37 @@
 package dao;
 
 import model.Balcao;
+import model.Delivery;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BalcaoDao {
+public class DeliveryDao {
     private Connection con = null;
 
-    public BalcaoDao(){
+    public DeliveryDao(){
         con = Conexao.getConnection();
     }
 
-    public void criarPedidoBalcao(Balcao balcao){
+    public void criarPedidoDelivery(Delivery delivery){
         String sql = "";
         PreparedStatement stmt;
         try {
             con = Conexao.getConnection();
 
-            sql = "INSERT INTO balcao (nome_cliente, preco_total, tempo) VALUES (?, ?, ?)";
+            sql = "INSERT INTO delivery (cod_cliente, preco_total, tempo, troco) VALUES (?, ?, ?, ?)";
             stmt = con.prepareStatement(sql);
 
-            stmt.setString(1, balcao.getNomeCliente());
-            stmt.setDouble(2, balcao.getPrecoTotal());
-            stmt.setTime(3, balcao.getTempo());
+            stmt.setInt(1, delivery.getCodCliente());
+            stmt.setDouble(2, delivery.getPrecoTotal());
+            stmt.setTime(3, delivery.getTempo());
+            stmt.setDouble(4, delivery.getTroco());
 
             stmt.execute();
-            System.out.println("\nPedido balcao adicionado no Banco de Dados\n");
+            System.out.println("\nPedido delivery adicionado no Banco de Dados\n");
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -37,10 +40,10 @@ public class BalcaoDao {
         }
     }
 
-    public ArrayList<Balcao> listarPedidos(){
-        ArrayList<Balcao> listaPedidos = new ArrayList<>();
+    public ArrayList<Delivery> listarPedidos(){
+        ArrayList<Delivery> listaPedidos = new ArrayList<>();
 
-        String sql = "SELECT * FROM balcao";
+        String sql = "SELECT * FROM delivery";
 
         try {
             con = Conexao.getConnection();
@@ -48,14 +51,15 @@ public class BalcaoDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-                Balcao balcao = new Balcao();
+                Delivery delivery = new Delivery();
 
-                balcao.setCodPedido(rs.getInt("cod_pedido"));
-                balcao.setNomeCliente(rs.getString("nome_cliente"));
-                balcao.setPrecoTotal(rs.getDouble("preco_total"));
-                balcao.setTempo(rs.getTime("tempo"));
+                delivery.setCodPedido(rs.getInt("cod_pedido"));
+                delivery.setCodCliente(rs.getInt("cod_cliente"));
+                delivery.setPrecoTotal(rs.getDouble("preco_total"));
+                delivery.setTroco(rs.getDouble("troco"));
+                delivery.setTempo(rs.getTime("tempo"));
 
-                listaPedidos.add(balcao);
+                listaPedidos.add(delivery);
             }
             rs.close();
             return listaPedidos;
@@ -68,10 +72,10 @@ public class BalcaoDao {
         }
     }
 
-    public Balcao buscarPedido(int codPedido){
-        Balcao balcao = new Balcao();
+    public Delivery buscarPedido(int codPedido){
+        Delivery delivery = new Delivery();
 
-        String sql = "SELECT * FROM balcao WHERE cod_pedido = "+ codPedido;
+        String sql = "SELECT * FROM delivery WHERE cod_pedido = "+ codPedido;
 
         try {
             con = Conexao.getConnection();
@@ -79,13 +83,14 @@ public class BalcaoDao {
             ResultSet rs = stmt.executeQuery();
 
             rs.next();
-            balcao.setCodPedido(codPedido);
-            balcao.setNomeCliente(rs.getString("nome_cliente"));
-            balcao.setPrecoTotal(rs.getDouble("preco_total"));
-            balcao.setTempo(rs.getTime("tempo"));
+            delivery.setCodPedido(codPedido);
+            delivery.setCodCliente(rs.getInt("cod_cliente"));
+            delivery.setPrecoTotal(rs.getDouble("preco_total"));
+            delivery.setTroco(rs.getDouble("troco"));
+            delivery.setTempo(rs.getTime("tempo"));
 
             rs.close();
-            return balcao;
+            return delivery;
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -95,21 +100,22 @@ public class BalcaoDao {
         }
     }
 
-    public void alterarPedido(Balcao balcao){
+    public void alterarPedido(Delivery delivery){
         String sql = "";
         PreparedStatement stmt;
 
         try {
             con = Conexao.getConnection();
 
-            sql = "UPDATE balcao " +
-                    "SET nome_cliente=?, preco_total=?, tempo=? " +
-                    "WHERE cod_pedido = "+ balcao.getCodPedido();
+            sql = "UPDATE delivery " +
+                    "SET cod_cliente=?, preco_total=?, tempo=?, troco= ? " +
+                    "WHERE cod_pedido = "+ delivery.getCodPedido();
             stmt = con.prepareStatement(sql);
 
-            stmt.setString(1, balcao.getNomeCliente());
-            stmt.setDouble(2, balcao.getPrecoTotal());
-            stmt.setTime(3, balcao.getTempo());
+            stmt.setInt(1, delivery.getCodCliente());
+            stmt.setDouble(2, delivery.getPrecoTotal());
+            stmt.setTime(3, delivery.getTempo());
+            stmt.setDouble(4, delivery.getTroco());
 
             stmt.execute();
             System.out.println("\nPedido Alterado no Banco de Dados\n");
@@ -128,7 +134,7 @@ public class BalcaoDao {
         try {
             con = Conexao.getConnection();
 
-            sql = "DELETE FROM balcao " +
+            sql = "DELETE FROM delivery " +
                     "WHERE cod_pedido = "+ codPedido;
             stmt = con.prepareStatement(sql);
 

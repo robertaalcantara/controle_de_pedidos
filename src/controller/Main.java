@@ -17,9 +17,10 @@ import java.util.SimpleTimeZone;
 public class Main {
     public static void main(String[] args) throws ParseException {
 
-       ArrayList<Balcao> lista = null;
-       Balcao balcao = new Balcao();
-       BalcaoDao daoBalcao = new BalcaoDao();
+       ArrayList<Delivery> lista = null;
+       Delivery delivery = new Delivery();
+       DeliveryDao daoDelivery = new DeliveryDao();
+
        int cod;
        String nome;
 
@@ -27,23 +28,33 @@ public class Main {
         String hora = "20:12";
         Time tempo = new Time(formato.parse(hora).getTime());;
 
-        /*balcao.setTempo(tempo);
-        balcao.setNomeCliente("José Ricardo");
-        balcao.setPrecoTotal(50.90);
-        balcao.setCodPedido(9);*/
+        /*delivery.setTempo(tempo);
+        delivery.setCodCliente(1);
+        delivery.setPrecoTotal(80);
+        delivery.setCodPedido(9);
+        delivery.setTroco(2.50);
+        delivery.setCodPedido(32);*/
 
-        daoBalcao.excluirPedido(9);
+        delivery.setCodPedido(24);
+        delivery = daoDelivery.buscarPedido(delivery.getCodPedido());
 
-       lista = daoBalcao.listarPedidos();
+        System.out.println(
+                delivery.getCodPedido() + ", " +
+                        delivery.getCodCliente() + ", " +
+                        delivery.getTempo() + ", " +
+                        delivery.getTroco() + ", " +
+                        delivery.getPrecoTotal() + ". \n ");
+
+       /*lista = daoDelivery.listarPedidos();
 
 
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(
                     lista.get(i).getCodPedido() + ", " +
-                     lista.get(i).getNomeCliente() + ", " +
+                     lista.get(i).getCodCliente() + ", " +
                    lista.get(i).getTempo() + ", " +
-                    lista.get(i).getPrecoTotal() + ", " +
+                    lista.get(i).getTroco() + ", " +
                     lista.get(i).getPrecoTotal() + ". \n ");
-        }
+        }*/
     }
 }
