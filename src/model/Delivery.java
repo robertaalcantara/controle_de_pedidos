@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Time;
+
 public class Delivery extends Pedido{
     private int codCliente;
     private double troco;
@@ -7,7 +9,7 @@ public class Delivery extends Pedido{
     public Delivery(){
     }
 
-    public Delivery(int codPedido, int tempo, double precoTotal, int codCliente, double troco) {
+    public Delivery(int codPedido, Time tempo, double precoTotal, int codCliente, double troco) {
         super(codPedido, tempo, precoTotal);
         this.codCliente = codCliente;
         this.troco = troco;

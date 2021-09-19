@@ -3,13 +3,13 @@ package model;
 import java.sql.Time;
 
 public class Pedido {
-    //tempo = tempo para o pedido ser entregue em minutos
-    private int codPedido, tempo;
+    private int codPedido;
     private double precoTotal;
+    private Time tempo;
 
     public Pedido(){}
 
-    public Pedido(int codPedido, int tempo, double precoTotal) {
+    public Pedido(int codPedido, Time tempo, double precoTotal) {
         this.codPedido = codPedido;
         this.tempo = tempo;
         this.precoTotal = precoTotal;
@@ -23,11 +23,11 @@ public class Pedido {
         this.codPedido = codPedido;
     }
 
-    public int getTempo() {
+    public Time getTempo() {
         return tempo;
     }
 
-    public void setTempo(int tempo) {
+    public void setTempo(Time tempo) {
         this.tempo = tempo;
     }
 

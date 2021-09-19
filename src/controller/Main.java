@@ -3,44 +3,47 @@ package controller;
 import dao.*;
 import model.*;
 
+import javax.swing.*;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.SimpleTimeZone;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
 
-       ArrayList<FormaPagamento> lista = null;
-       FormaPagamento formaPagamento = new FormaPagamento();
-       FormaPagamentoDao daoFormaPagamento = new FormaPagamentoDao();
+       ArrayList<Balcao> lista = null;
+       Balcao balcao = new Balcao();
+       BalcaoDao daoBalcao = new BalcaoDao();
        int cod;
        String nome;
 
-       formaPagamento = daoFormaPagamento.buscarFormaPagamento(6);
+        DateFormat formato = new SimpleDateFormat("HH:mm");
+        String hora = "20:12";
+        Time tempo = new Time(formato.parse(hora).getTime());;
 
-        daoFormaPagamento.excluirFormaPagamento(formaPagamento.getCodFormaPagamento());
-        lista = daoFormaPagamento.listarFormasPagamento();
+        /*balcao.setTempo(tempo);
+        balcao.setNomeCliente("José Ricardo");
+        balcao.setPrecoTotal(50.90);
+        balcao.setCodPedido(9);*/
 
-        /*System.out.println(
-                caixa.getData() + ", " +
-                        caixa.getValorTotal() + ", " +
-                        caixa.getValorIfood() + ", " +
-                        caixa.getValorDinheiro() + ", " +
-                        caixa.getValorDebito() + ", " +
-                        caixa.getValorCredito() + ", " +
-                        caixa.getValorCrediario()+ ". \n ");*/
+        daoBalcao.excluirPedido(9);
+
+       lista = daoBalcao.listarPedidos();
+
 
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(
-                    lista.get(i).getCodFormaPagamento() + ", " +
-                    /* lista.get(i).getNome() + ", " +
-                   lista.get(i).getValorIfood() + ", " +
-                    lista.get(i).getValorDinheiro() + ", " +
-                    lista.get(i).getValorDebito() + ", " +
-                    lista.get(i).getValorCredito() + ", " +*/
-                    lista.get(i).getNome() + ". \n ");
+                    lista.get(i).getCodPedido() + ", " +
+                     lista.get(i).getNomeCliente() + ", " +
+                   lista.get(i).getTempo() + ", " +
+                    lista.get(i).getPrecoTotal() + ", " +
+                    lista.get(i).getPrecoTotal() + ". \n ");
         }
     }
 }
