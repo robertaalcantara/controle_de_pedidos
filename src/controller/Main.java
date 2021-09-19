@@ -2,6 +2,7 @@ package controller;
 
 import dao.*;
 import model.*;
+import view.Pedidos;
 
 import javax.swing.*;
 import java.sql.Time;
@@ -17,44 +18,39 @@ import java.util.SimpleTimeZone;
 public class Main {
     public static void main(String[] args) throws ParseException {
 
-       ArrayList<Delivery> lista = null;
-       Delivery delivery = new Delivery();
-       DeliveryDao daoDelivery = new DeliveryDao();
+       ArrayList<HistoricoCrediario> lista = null;
+       HistoricoCrediario historicoCrediario = new HistoricoCrediario();
+       HistoricoCrediarioDao daoHistoricoCrediario = new HistoricoCrediarioDao();
 
        int cod;
        String nome;
 
-        DateFormat formato = new SimpleDateFormat("HH:mm");
-        String hora = "20:12";
-        Time tempo = new Time(formato.parse(hora).getTime());;
+        String dataString = "20/09/2021";
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        java.sql.Date data = new java.sql.Date(format.parse(dataString).getTime());
 
-        /*delivery.setTempo(tempo);
-        delivery.setCodCliente(1);
-        delivery.setPrecoTotal(80);
-        delivery.setCodPedido(9);
-        delivery.setTroco(2.50);
-        delivery.setCodPedido(32);*/
+        historicoCrediario.setValorCrediarioPedido(35.50);
+        historicoCrediario.setCodCliente(8);
+        historicoCrediario.setCodPedido(31);
+        historicoCrediario.setData(data);
+        historicoCrediario.setIdCrediario(10);
 
-        delivery.setCodPedido(24);
-        delivery = daoDelivery.buscarPedido(delivery.getCodPedido());
+        historicoCrediario = daoHistoricoCrediario.buscarHistoricoCrediario(5);
 
         System.out.println(
-                delivery.getCodPedido() + ", " +
-                        delivery.getCodCliente() + ", " +
-                        delivery.getTempo() + ", " +
-                        delivery.getTroco() + ", " +
-                        delivery.getPrecoTotal() + ". \n ");
+                historicoCrediario.getIdCrediario() + ", " +
+                        historicoCrediario.getCodPedido() + ", " +
+                        historicoCrediario.getCodCliente() + ", " +
+                        historicoCrediario.getData() + ", " +
+                        historicoCrediario.getValorCrediarioPedido() + ". \n ");
 
-       /*lista = daoDelivery.listarPedidos();
-
-
-        for (int i = 0; i < lista.size(); i++) {
+       /* for (int i = 0; i < lista.size(); i++) {
             System.out.println(
+                    lista.get(i).getIdCrediario() + ", " +
                     lista.get(i).getCodPedido() + ", " +
                      lista.get(i).getCodCliente() + ", " +
-                   lista.get(i).getTempo() + ", " +
-                    lista.get(i).getTroco() + ", " +
-                    lista.get(i).getPrecoTotal() + ". \n ");
+                   lista.get(i).getData() + ", " +
+                    lista.get(i).getValorCrediarioPedido() + ". \n ");
         }*/
     }
 }
