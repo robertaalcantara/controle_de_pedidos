@@ -10,39 +10,33 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws ParseException {
 
-       ArrayList<HistoricoCrediario> lista = null;
-       HistoricoCrediario historicoCrediario = new HistoricoCrediario();
-       DeliveryHistoricoCrediarioDao daoHistoricoCrediario = new DeliveryHistoricoCrediarioDao();
+       ArrayList<PedidoFormaPagamento> lista = null;
+       PedidoFormaPagamento pedidoFormaPagamento = new PedidoFormaPagamento();
+       DeliveryFormaPagamentoDao daoDeliveryFormaPagamento = new DeliveryFormaPagamentoDao();
 
        int cod;
        String nome;
 
-        String dataString = "20/09/2021";
+        String dataString = "03/02/2021";
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         java.sql.Date data = new java.sql.Date(format.parse(dataString).getTime());
 
-        historicoCrediario.setValorCrediarioPedido(35.50);
-        historicoCrediario.setCodCliente(8);
-        historicoCrediario.setCodPedido(31);
-        historicoCrediario.setData(data);
-        historicoCrediario.setIdCrediario(10);
+        pedidoFormaPagamento.setCodFormaPagamento(2);
+        pedidoFormaPagamento.setFinalizado(false);
+        pedidoFormaPagamento.setCodPedido(31);
+        pedidoFormaPagamento.setDataCaixa(data);
+        pedidoFormaPagamento.setValor(22.00);
 
-        historicoCrediario = daoHistoricoCrediario.buscarHistoricoCrediario(5);
 
-        System.out.println(
-                historicoCrediario.getIdCrediario() + ", " +
-                        historicoCrediario.getCodPedido() + ", " +
-                        historicoCrediario.getCodCliente() + ", " +
-                        historicoCrediario.getData() + ", " +
-                        historicoCrediario.getValorCrediarioPedido() + ". \n ");
+        lista = daoDeliveryFormaPagamento.listarPedidoFormaPagamentoPorStatus(true);
 
-       /* for (int i = 0; i < lista.size(); i++) {
+        for (int i = 0; i < lista.size(); i++) {
             System.out.println(
-                    lista.get(i).getIdCrediario() + ", " +
+                    lista.get(i).getCodFormaPagamento() + ", " +
                     lista.get(i).getCodPedido() + ", " +
-                     lista.get(i).getCodCliente() + ", " +
-                   lista.get(i).getData() + ", " +
-                    lista.get(i).getValorCrediarioPedido() + ". \n ");
-        }*/
+                     lista.get(i).isFinalizado() + ", " +
+                   lista.get(i).getDataCaixa() + ", " +
+                    lista.get(i).getValor() + ". \n ");
+        }
     }
 }
