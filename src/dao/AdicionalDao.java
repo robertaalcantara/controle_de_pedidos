@@ -1,33 +1,35 @@
 package dao;
 
+import model.Adicional;
 import model.ItemPedido;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BalcaoItemPedidoDao {
+public class AdicionalDao {
     private Connection con = null;
 
-    public BalcaoItemPedidoDao(){
+    public AdicionalDao(){
         con = Conexao.getConnection();
     }
 
-    public void inserirItemPedido(ItemPedido itemPedido){
+    public void inserirAdicional(Adicional adicional){
         String sql = "";
         PreparedStatement stmt;
         try {
             con = Conexao.getConnection();
 
-            sql = "INSERT INTO balcao_item_pedido (cod_item, cod_pedido) VALUES (?, ?)";
+            sql = "INSERT INTO adiciona_item (cod_item, cod_item_adicional) VALUES (?, ?)";
             stmt = con.prepareStatement(sql);
 
-            stmt.setInt(1, itemPedido.getCodItem());
-            stmt.setInt(2, itemPedido.getCodPedido());
+            stmt.setInt(1, adicional.getCodItem());
+            stmt.setInt(2, adicional.getCodItemAdicional());
 
             stmt.execute();
-            System.out.println("\nItem/pedido balcao adicionado no Banco de Dados\n");
+            System.out.println("\nAdicional adicionado ao item no Banco de Dados\n");
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -36,10 +38,10 @@ public class BalcaoItemPedidoDao {
         }
     }
 
-    public ArrayList<ItemPedido> listarItensPedido(){
-        ArrayList<ItemPedido> listaItensPedido = new ArrayList<>();
+    public ArrayList<Adicional> listarAdicionaisItens(){
+        ArrayList<Adicional> listaAdicionaisItens = new ArrayList<>();
 
-        String sql = "SELECT * FROM balcao_item_pedido";
+        String sql = "SELECT * FROM adiciona_item";
 
         try {
             con = Conexao.getConnection();
@@ -47,15 +49,15 @@ public class BalcaoItemPedidoDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-                ItemPedido itemPedido = new ItemPedido();
+                Adicional adicional = new Adicional();
 
-                itemPedido.setCodPedido(rs.getInt("cod_pedido"));
-                itemPedido.setCodItem(rs.getInt("cod_item"));
+                adicional.setCodItemAdicional(rs.getInt("cod_item_adicional"));
+                adicional.setCodItem(rs.getInt("cod_item"));
 
-                listaItensPedido.add(itemPedido);
+                listaAdicionaisItens.add(adicional);
             }
             rs.close();
-            return listaItensPedido;
+            return listaAdicionaisItens;
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -65,10 +67,10 @@ public class BalcaoItemPedidoDao {
         }
     }
 
-    public ArrayList<ItemPedido> listarItensPorPedido(int codPedido){
-        ArrayList<ItemPedido> listaItensPedido = new ArrayList<>();
+    public ArrayList<Adicional> listarAdicionaisPorItem(int codItem){
+        ArrayList<Adicional> listaAdicionaisItem = new ArrayList<>();
 
-        String sql = "SELECT * FROM balcao_item_pedido WHERE cod_pedido = "+ codPedido;
+        String sql = "SELECT * FROM adiciona_item WHERE cod_item = "+ codItem;
 
         try {
             con = Conexao.getConnection();
@@ -76,15 +78,15 @@ public class BalcaoItemPedidoDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-                ItemPedido itemPedido = new ItemPedido();
+                Adicional adicional = new Adicional();
 
-                itemPedido.setCodPedido(rs.getInt("cod_pedido"));
-                itemPedido.setCodItem(rs.getInt("cod_item"));
+                adicional.setCodItemAdicional(rs.getInt("cod_item_adicional"));
+                adicional.setCodItem(rs.getInt("cod_item"));
 
-                listaItensPedido.add(itemPedido);
+                listaAdicionaisItem.add(adicional);
             }
             rs.close();
-            return listaItensPedido;
+            return listaAdicionaisItem;
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -94,20 +96,20 @@ public class BalcaoItemPedidoDao {
         }
     }
 
-    public void excluirItemPedido(ItemPedido itemPedido){
+    public void excluirAdicionalItem(Adicional adicional){
         String sql = "";
         PreparedStatement stmt;
 
         try {
             con = Conexao.getConnection();
 
-            sql = "DELETE FROM balcao_item_pedido " +
-                    "WHERE cod_item = "+ itemPedido.getCodItem() +
-                    " AND cod_pedido = "+ itemPedido.getCodPedido();
+            sql = "DELETE FROM adiciona_item " +
+                    "WHERE cod_item = "+ adicional.getCodItem() +
+                    " AND cod_item_adicional = "+ adicional.getCodItemAdicional();
             stmt = con.prepareStatement(sql);
 
             stmt.execute();
-            System.out.println("\nItem/pedido excluído do Banco de Dados\n");
+            System.out.println("\nAdicional/item excluído do Banco de Dados\n");
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
