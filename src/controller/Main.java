@@ -2,9 +2,7 @@ package controller;
 
 import dao.*;
 import model.*;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Main {

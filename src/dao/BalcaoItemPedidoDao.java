@@ -1,16 +1,17 @@
 package dao;
 
 import model.ItemPedido;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DeliveryItemPedidoDao {
+public class BalcaoItemPedidoDao {
     private Connection con = null;
 
-    public DeliveryItemPedidoDao(){
+    public BalcaoItemPedidoDao(){
         con = Conexao.getConnection();
     }
 
@@ -20,14 +21,14 @@ public class DeliveryItemPedidoDao {
         try {
             con = Conexao.getConnection();
 
-            sql = "INSERT INTO delivery_item_pedido (cod_item, cod_pedido) VALUES (?, ?)";
+            sql = "INSERT INTO balcao_item_pedido (cod_item, cod_pedido) VALUES (?, ?)";
             stmt = con.prepareStatement(sql);
 
             stmt.setInt(1, itemPedido.getCodItem());
             stmt.setInt(2, itemPedido.getCodPedido());
 
             stmt.execute();
-            System.out.println("\nItem/pedido delivery adicionado no Banco de Dados\n");
+            System.out.println("\nItem/pedido balcao adicionado no Banco de Dados\n");
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
@@ -39,7 +40,7 @@ public class DeliveryItemPedidoDao {
     public ArrayList<ItemPedido> listarItensPedido(){
         ArrayList<ItemPedido> listaItensPedido = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_item_pedido";
+        String sql = "SELECT * FROM balcao_item_pedido";
 
         try {
             con = Conexao.getConnection();
@@ -68,7 +69,7 @@ public class DeliveryItemPedidoDao {
     public ArrayList<ItemPedido> listarItensPorPedido(int codPedido){
         ArrayList<ItemPedido> listaItensPedido = new ArrayList<>();
 
-        String sql = "SELECT * FROM delivery_item_pedido WHERE cod_pedido = "+ codPedido;
+        String sql = "SELECT * FROM balcao_item_pedido WHERE cod_pedido = "+ codPedido;
 
         try {
             con = Conexao.getConnection();
@@ -101,7 +102,7 @@ public class DeliveryItemPedidoDao {
         try {
             con = Conexao.getConnection();
 
-            sql = "DELETE FROM delivery_item_pedido " +
+            sql = "DELETE FROM balcao_item_pedido " +
                     "WHERE cod_item = "+ itemPedido.getCodItem() +
                     " AND cod_pedido = "+ itemPedido.getCodPedido();
             stmt = con.prepareStatement(sql);
