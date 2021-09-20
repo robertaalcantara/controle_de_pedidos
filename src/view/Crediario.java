@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 
 public class Crediario extends JFrame{
     private JButton clientesButton;
-    private JButton crediárioButton;
+    private JButton crediarioButton;
     private JButton pedidosButton;
-    private JButton relátoriosButton;
+    private JButton relatoriosButton;
     private JButton produtosButton;
     private JButton balcaoButton;
     private JList list1;
@@ -25,43 +25,53 @@ public class Crediario extends JFrame{
         clientesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Clientes clientes = new Clientes("Clientes");
+                clientes.setVisible(true);
+                dispose();
             }
         });
         pedidosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Pedidos pedidos = new Pedidos("Pedidos");
+                pedidos.setVisible(true);
+                dispose();
             }
         });
-        relátoriosButton.addActionListener(new ActionListener() {
+        relatoriosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Relatorios relatorios = new Relatorios("Relatorios");
+                relatorios.setVisible(true);
+                dispose();
             }
         });
         produtosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Produtos produtos = new Produtos("Produtos");
+                produtos.setVisible(true);
+                dispose();
             }
         });
         balcaoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Balcao balcao = new Balcao("Balcao");
+                balcao.setVisible(true);
+                dispose();
             }
         });
         consultarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // select crediario por nome
             }
         });
         excluirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //delete crediario
             }
         });
     }
