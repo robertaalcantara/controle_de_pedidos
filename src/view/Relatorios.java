@@ -1,8 +1,13 @@
 package view;
 
+import dao.RelatoriosDao;
+import model.Caixa;
+import model.ConsultasRelatorio;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Relatorios extends JFrame{
     private JButton consulta1Button;
@@ -11,11 +16,12 @@ public class Relatorios extends JFrame{
     private JList list1;
     private JButton clientesButton;
     private JButton pedidosButton;
-    private JButton relátoriosButton;
+    private JButton relatoriosButton;
     private JButton produtosButton;
     private JButton balcaoButton;
     private JPanel mainPanel;
     private JButton crediarioButton;
+    RelatoriosDao daoRelatorios = new RelatoriosDao();
 
     public Relatorios(String title) {
         super(title);
@@ -65,19 +71,19 @@ public class Relatorios extends JFrame{
         consulta1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ArrayList<ConsultasRelatorio> lista = daoRelatorios.consulta1();
             }
         });
         consulta2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Caixa caixa = daoRelatorios.consulta2();
             }
         });
         consulta3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ArrayList<ConsultasRelatorio> lista = daoRelatorios.consulta3();
             }
         });
 

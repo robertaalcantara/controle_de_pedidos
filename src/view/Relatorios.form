@@ -123,10 +123,10 @@
                   <separatorSize width="20" height="10"/>
                 </properties>
               </component>
-              <component id="66256" class="javax.swing.JButton" binding="relátoriosButton" default-binding="true">
+              <component id="66256" class="javax.swing.JButton" binding="relatoriosButton">
                 <constraints/>
                 <properties>
-                  <text value="Relátorios"/>
+                  <text value="Relatórios"/>
                 </properties>
               </component>
               <component id="1d8d2" class="javax.swing.JToolBar$Separator">
