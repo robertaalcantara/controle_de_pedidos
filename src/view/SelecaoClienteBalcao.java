@@ -1,10 +1,39 @@
 package view;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SelecaoClienteBalcao {
-    private JPanel panel1;
-    private JTextField textField1;
+public class SelecaoClienteBalcao extends JFrame{
+    private JPanel mainPanel;
+    private JTextField nomeTextField;
     private JButton continuarButton;
     private JButton cancelarButton;
+
+    public SelecaoClienteBalcao(String title){
+        super(title);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setContentPane(mainPanel);
+        this.pack();
+        cancelarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Clientes clientes = new Clientes("Clientes");
+                clientes.setVisible(true);
+                dispose();
+            }
+        });
+        continuarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FazerPedido fazerPedido = new FazerPedido("Fazer Pedido");
+                fazerPedido.setVisible(true);
+                dispose();
+            }
+        });
+    }
+
+
+
+
 }
