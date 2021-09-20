@@ -114,14 +114,20 @@ public class Clientes extends JFrame{
                     }
                 }
                 ///PEGAR A LISTA E MANDAR PRO COMPONENTE VISUAL
-                table = new JTable();
+                table = new javax.swing.JTable();
 
-                DefaultTableModel model =(DefaultTableModel) table.getModel();
-//              model.setColumnIdentifiers(Header);
-                model.setRowCount(0);
+                table.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+
+
+                        },
+                        new String [] {
+                                "Nome", "Telefone", "Rua", "Numero", "Complemento", "Bairro", "Frete"
+                        }
+                ));
+//                model.setRowCount(0);
                 Object[] registro = new Object[7];
-
-
+                DefaultTableModel model =(DefaultTableModel) table.getModel();
                 for(int i = 0; i < listaClientes.size(); ++i){
                     Endereco endereco = new Endereco();
                     endereco = enderecoDao.buscarEndereco(listaClientes.get(i).getCodEndereco());
@@ -135,11 +141,9 @@ public class Clientes extends JFrame{
 
                     model.addRow(registro);
 
-
-
                 }
-                scrollPane1 = new JScrollPane(table);
-                mainPanel.add(scrollPane1);
+
+
 
             }
         });
