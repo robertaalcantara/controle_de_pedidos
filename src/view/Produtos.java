@@ -1,8 +1,14 @@
 package view;
 
+import dao.CategoriaDao;
+import dao.ProdutoDao;
+import model.Categoria;
+import model.Produto;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Produtos extends JFrame{
     private JPanel mainPanel;
@@ -13,7 +19,7 @@ public class Produtos extends JFrame{
     private JButton produtosButton;
     private JButton pedidosButton;
     private JButton balcaoButton;
-    private JComboBox CategoriaComboBox1;
+    private JComboBox categoriaComboBox1;
     private JTextField nomeTextField;
     private JTextField valorTextField;
     private JComboBox categoriaComboBox2;
@@ -23,12 +29,21 @@ public class Produtos extends JFrame{
     private JButton crediarioButton;
     private JButton excluirButton;
     private JButton excluirCategoriaButton;
+    private CategoriaDao daoCategoria = new CategoriaDao();
+    private ProdutoDao daoProduto = new ProdutoDao();
+    private ArrayList<Categoria> lista = null;
 
     public Produtos(String title){
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
+
+        lista = daoCategoria.listarCategorias();
+        for(int i=0; i<lista.size(); i++){
+            categoriaComboBox2.addItem(lista.get(i).getNome());
+            categoriaComboBox1.addItem(lista.get(i).getNome());
+        }
         clientesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,9 +85,17 @@ public class Produtos extends JFrame{
             }
         });
         pesquisarButton.addActionListener(new ActionListener() {
+            ArrayList<Produto> lista = null;
+            int codCategoria;
             @Override
             public void actionPerformed(ActionEvent e) {
-                //select em produto por nome e categoria
+                codCategoria = daoCategoria.buscarCodCategoria(categoriaComboBox1.getSelectedItem().toString());
+                if(pesquisarNomeTextField.getText().isEmpty()){
+                    lista = daoProduto.listarProdutosPorCategoria(codCategoria);
+                }else {
+                    lista = daoProduto.listarProdutosPorCategoriaENome(codCategoria, pesquisarNomeTextField.getText());
+                }
+                //FALTA PASSAR A LISTA PARA O ELEMENTO VISUAL
             }
         });
         adicionarCategoriaButton.addActionListener(new ActionListener() {
@@ -86,20 +109,33 @@ public class Produtos extends JFrame{
         adicionarProdutoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //insert tabela produto
+                Produto produto = new Produto();
+                produto.setNome(nomeTextField.getText());
+                int codCategoria = daoCategoria.buscarCodCategoria(categoriaComboBox2.getSelectedItem().toString());
+                produto.setCodCategoria(codCategoria);
+                produto.setPrecoUnitario(Double.parseDouble(valorTextField.getText()));
+
+                daoProduto.inserirProduto(produto);
             }
         });
 
         excluirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //delete produto
+
             }
         });
         excluirCategoriaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //delete categoria
+                int codCategoria = daoCategoria.buscarCodCategoria(categoriaComboBox2.getSelectedItem().toString());
+                daoCategoria.excluirCategoria(codCategoria);
+
+                lista = daoCategoria.listarCategorias();
+                for(int i=0; i<lista.size(); i++){
+                    categoriaComboBox2.addItem(lista.get(i).getNome());
+                    categoriaComboBox1.addItem(lista.get(i).getNome());
+                }
             }
         });
     }
