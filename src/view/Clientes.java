@@ -1,6 +1,6 @@
 package view;
 
-import controller.ClienteAtual;
+import controller.ClienteDeliveryAtual;
 import dao.ClienteDao;
 import dao.EnderecoDao;
 import model.Cliente;
@@ -138,7 +138,7 @@ public class Clientes extends JFrame{
                     clienteDao.inserirCliente(cliente);
                     codCliente = clienteDao.buscarCodCliente(cliente);
                 }
-                ClienteAtual.setUserAtual(cliente);
+                ClienteDeliveryAtual.setClienteAtual(cliente);
             }
         });
         selecionarClienteParaDeliveryButton.addActionListener(new ActionListener() {
