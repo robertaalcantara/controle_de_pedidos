@@ -18,7 +18,12 @@
         </constraints>
         <properties/>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="9e48b" class="javax.swing.JTable" binding="table1" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
       </scrollpane>
       <toolbar id="fd000">
         <constraints>
@@ -97,7 +102,7 @@
               <separatorSize width="600" height="10"/>
             </properties>
           </component>
-          <component id="e8bb7" class="javax.swing.JButton" binding="balcaoButton" custom-create="true" default-binding="true">
+          <component id="e8bb7" class="javax.swing.JButton" binding="balcaoButton" default-binding="true">
             <constraints/>
             <properties>
               <text value="Balcao"/>

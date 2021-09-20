@@ -17,15 +17,14 @@ public class Pedidos extends JFrame {
     private JButton crediarioButton;
     private JPanel mainPanel;
     private JScrollPane scrollPane;
+    private JTable table1;
 
 //    String Header[] = {"Numero", "Nome do Cliente", "Produto", "Valor", "Tipo", "Frete"};
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+
 //        DefaultTableModel model = new DefaultTableModel(2, 6);
 //        model.setColumnIdentifiers(Header);
 //        table1 = new JTable(model);
-    }
 
     public Pedidos(String title) {
         super(title);

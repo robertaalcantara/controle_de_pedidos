@@ -25,6 +25,8 @@ public class FinalizarPedido extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //calcula o troco
+                int troco = Integer.parseInt(valorPagoTextField.getText()) - Integer.parseInt(valorPedidoLabel.getText());
+                trocoLabel.setText(String.valueOf(troco));
             }
         });
         finalizarButton.addActionListener(new ActionListener() {

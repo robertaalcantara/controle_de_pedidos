@@ -29,6 +29,7 @@ public class Produtos extends JFrame{
     private JButton crediarioButton;
     private JButton excluirButton;
     private JButton excluirCategoriaButton;
+    private JButton alterarButton;
     private CategoriaDao daoCategoria = new CategoriaDao();
     private ProdutoDao daoProduto = new ProdutoDao();
     private ArrayList<Categoria> lista = null;
@@ -136,6 +137,13 @@ public class Produtos extends JFrame{
                     categoriaComboBox2.addItem(lista.get(i).getNome());
                     categoriaComboBox1.addItem(lista.get(i).getNome());
                 }
+            }
+        });
+        alterarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //passa informações do produto para a outra tela
+
             }
         });
     }

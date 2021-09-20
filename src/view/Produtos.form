@@ -333,6 +333,14 @@
           <text value="Excluir"/>
         </properties>
       </component>
+      <component id="203d0" class="javax.swing.JButton" binding="alterarButton" default-binding="true">
+        <constraints>
+          <grid row="17" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Alterar"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
