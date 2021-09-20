@@ -39,7 +39,7 @@
               <separatorSize width="20" height="10"/>
             </properties>
           </component>
-          <component id="faa13" class="javax.swing.JButton" binding="crediárioButton" default-binding="true">
+          <component id="faa13" class="javax.swing.JButton" binding="crediarioButton">
             <constraints/>
             <properties>
               <text value="Crediário"/>
@@ -63,10 +63,10 @@
               <separatorSize width="20" height="10"/>
             </properties>
           </component>
-          <component id="33f4a" class="javax.swing.JButton" binding="relátoriosButton" default-binding="true">
+          <component id="33f4a" class="javax.swing.JButton" binding="relatoriosButton">
             <constraints/>
             <properties>
-              <text value="Relátorios"/>
+              <text value="Relatórios"/>
             </properties>
           </component>
           <component id="3ec28" class="javax.swing.JToolBar$Separator">
@@ -115,7 +115,9 @@
         <children>
           <component id="cc57e" class="javax.swing.JList" binding="list1" default-binding="true">
             <constraints/>
-            <properties/>
+            <properties>
+              <model/>
+            </properties>
           </component>
         </children>
       </scrollpane>
@@ -361,4 +363,10 @@
       </component>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="groupTipoConsulta">
+      <member id="4a1fa"/>
+      <member id="ee61e"/>
+    </group>
+  </buttonGroups>
 </form>
