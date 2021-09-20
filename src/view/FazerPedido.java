@@ -1,5 +1,7 @@
 package view;
 
+import model.Cliente;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ public class FazerPedido extends JFrame{
     private JLabel nomeProdutoLabel;
     private JLabel totalPedidoLabel;
     private JPanel mainPanel;
+    Cliente cliente = new Cliente();
 
     public FazerPedido(String title){
         super(title);

@@ -101,6 +101,38 @@ public class ProdutoDao {
         }
     }
 
+    public ArrayList<Produto> listarProdutosPorCategoriaENome(int codCategoria, String nome){
+        ArrayList<Produto> listaProdutos = new ArrayList<>();
+
+        String sql = "SELECT * FROM produto WHERE cod_categoria = "+codCategoria +
+                    " AND nome LIKE '%" + nome + "%'";
+
+        try {
+            con = Conexao.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Produto produto = new Produto();
+
+                produto.setCodProduto(rs.getInt("cod_produto"));
+                produto.setNome(rs.getString("nome"));
+                produto.setPrecoUnitario(rs.getDouble("preco_unit"));
+                produto.setCodCategoria(rs.getInt("cod_categoria"));
+
+                listaProdutos.add(produto);
+            }
+            rs.close();
+            return listaProdutos;
+
+        } catch (SQLException throwables) {
+            System.out.println("Erro: " + throwables);
+            return null;
+        } finally {
+            Conexao.closeConnection(con);
+        }
+    }
+
     public Produto buscarProduto(int codProduto){
         Produto produto = new Produto();
 
