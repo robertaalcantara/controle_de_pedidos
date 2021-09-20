@@ -1,7 +1,10 @@
 package view;
 
+import controller.ClienteAtual;
 import dao.ClienteDao;
+import dao.EnderecoDao;
 import model.Cliente;
+import model.Endereco;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,6 +33,7 @@ public class Clientes extends JFrame{
     private JButton crediarioButton;
     private JButton selecionarClienteParaDeliveryButton;
     private JPanel mainPanel;
+    private JTextField freteTextField;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -41,6 +45,7 @@ public class Clientes extends JFrame{
         this.setContentPane(mainPanel);
         this.pack();
         ClienteDao clienteDao = new ClienteDao();
+        EnderecoDao enderecoDao = new EnderecoDao();
 
         crediarioButton.addActionListener(new ActionListener() {
             @Override
@@ -103,7 +108,37 @@ public class Clientes extends JFrame{
         cadastrarClienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //fazer insert no banco
+                Endereco endereco = new Endereco();
+                Cliente cliente = new Cliente();
+                int codEndereco, codCliente;
+
+                endereco.setRua(ruaTextField.getText());
+                endereco.setBairro(bairroTextField.getText());
+                endereco.setNumero(Integer.parseInt(numeroTextField.getText()));
+                endereco.setFrete(Double.parseDouble(freteTextField.getText()));
+                if(!complementoTextField.getText().isEmpty()){
+                    endereco.setComplemento(complementoTextField.getText());
+                }
+
+                codEndereco = enderecoDao.buscarCodEndereco(endereco);
+
+                if(codEndereco == 0){
+                    enderecoDao.inserirEndereco(endereco);
+                    codEndereco = enderecoDao.buscarCodEndereco(endereco);
+                }
+                endereco.setCodEndereco(codEndereco);
+
+                cliente.setNome(nomeTextField.getText());
+                cliente.setTelefone(telefoneTextField.getText());
+
+                codCliente = clienteDao.buscarCodCliente(cliente);
+
+                if(codCliente == 0){
+                    cliente.setCodEndereco(codEndereco);
+                    clienteDao.inserirCliente(cliente);
+                    codCliente = clienteDao.buscarCodCliente(cliente);
+                }
+                ClienteAtual.setUserAtual(cliente);
             }
         });
         selecionarClienteParaDeliveryButton.addActionListener(new ActionListener() {
