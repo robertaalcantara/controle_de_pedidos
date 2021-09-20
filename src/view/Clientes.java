@@ -82,8 +82,8 @@ public class Clientes extends JFrame{
         balcaoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelecaoClienteBalcao selecaoClienteBalcao = new SelecaoClienteBalcao("Balcao");
-                selecaoClienteBalcao.setVisible(true);
+                Balcao balcao = new Balcao("Balcao");
+                balcao.setVisible(true);
                 dispose();
             }
         });

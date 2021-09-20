@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SelecaoClienteBalcao extends JFrame{
+public class Balcao extends JFrame{
     private JPanel mainPanel;
     private JTextField nomeTextField;
     private JButton continuarButton;
     private JButton cancelarButton;
 
-    public SelecaoClienteBalcao(String title){
+    public Balcao(String title){
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
