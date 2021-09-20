@@ -101,6 +101,9 @@ public class Clientes extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //mandar informacoes do cliente selecionado para a outra tela
+                AlterarCliente alterarCliente = new AlterarCliente("Alterar Cliente");
+                alterarCliente.setVisible(true);
+                dispose();
             }
         });
     }
