@@ -33,6 +33,7 @@ public class Produtos extends JFrame{
     private CategoriaDao daoCategoria = new CategoriaDao();
     private ProdutoDao daoProduto = new ProdutoDao();
     private ArrayList<Categoria> lista = null;
+    Produto produto = new Produto();
 
     public Produtos(String title){
         super(title);
@@ -143,7 +144,9 @@ public class Produtos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //passa informações do produto para a outra tela
-
+                AlterarProduto alterarProduto = new AlterarProduto("Alterar produto", produto);
+                alterarProduto.setVisible(true);
+                dispose();
             }
         });
     }

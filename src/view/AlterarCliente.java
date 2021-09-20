@@ -1,6 +1,6 @@
 package view;
 
-import controller.ClienteAtual;
+import controller.ClienteDeliveryAtual;
 import dao.ClienteDao;
 import dao.EnderecoDao;
 import model.Cliente;
@@ -11,8 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AlterarCliente extends JFrame{
-    Cliente clienteAtual = ClienteAtual.getUserAtual();
-    Endereco endereco = ClienteAtual.getEnderecoUserAtual();
+    Cliente clienteAtual = ClienteDeliveryAtual.getClienteAtual();
+    Endereco endereco = ClienteDeliveryAtual.getEnderecoClienteAtual();
     ClienteDao daoCliente = new ClienteDao();
     EnderecoDao daoEndereco = new EnderecoDao();
     private JTextField nomeTextField;

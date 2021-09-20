@@ -1,5 +1,7 @@
 package view;
 
+import controller.ClienteBalcaoAtual;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +28,8 @@ public class Balcao extends JFrame{
         continuarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                ClienteBalcaoAtual.setClienteAtual(nomeTextField.getText());
                 FazerPedido fazerPedido = new FazerPedido("Fazer Pedido");
                 fazerPedido.setVisible(true);
                 dispose();

@@ -3,7 +3,6 @@ package view;
 import dao.RelatoriosDao;
 import model.Caixa;
 import model.ConsultasRelatorio;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

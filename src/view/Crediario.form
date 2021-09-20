@@ -63,7 +63,7 @@
           <component id="13126" class="javax.swing.JButton" binding="relatoriosButton">
             <constraints/>
             <properties>
-              <text value="Relátorios"/>
+              <text value="Relatórios"/>
             </properties>
           </component>
           <component id="7ccd8" class="javax.swing.JToolBar$Separator">
