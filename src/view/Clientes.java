@@ -41,12 +41,13 @@ public class Clientes extends JFrame{
 
     private void createUIComponents(String nome, String telefone, String rua, int numero, String complemento, String bairro, double frete) {
         // TODO: place custom component creation code here
-        DefaultTableModel model = new DefaultTableModel(0,7);
-        model.setColumnIdentifiers(Header);
-        table = new JTable(model);
-        model.addRow(new Object[]{
-                nome, telefone, rua, numero, complemento, bairro, frete
-        });
+
+//        model.addRow(new Object[]{
+//                nome, telefone, rua, numero, complemento, bairro, frete
+//        });
+//        model.addRow(new Object[]{"A","b", "c", "d", "e", "f", "g"});
+//        scrollPane1 = new JScrollPane(table);
+//        add(scrollPane1);
     }
 
     public Clientes(String title){
@@ -113,11 +114,30 @@ public class Clientes extends JFrame{
                     }
                 }
                 ///PEGAR A LISTA E MANDAR PRO COMPONENTE VISUAL
-                for(Cliente c: clienteDao.listarClientes()){
+                table = new JTable();
+                DefaultTableModel model =(DefaultTableModel) table.getModel();
+//              model.setColumnIdentifiers(Header);
+                model.setRowCount(0);
+                Object[] registro = new Object[7];
+
+
+                for(int i = 0; i < listaClientes.size(); ++i){
                     Endereco endereco = new Endereco();
-                    endereco = enderecoDao.buscarEndereco(c.getCodEndereco());
-                    createUIComponents(c.getNome(), c.getTelefone(), endereco.getRua(), endereco.getNumero(), endereco.getComplemento(), endereco.getBairro(), endereco.getFrete());
+                    endereco = enderecoDao.buscarEndereco(listaClientes.get(i).getCodEndereco());
+                    registro[0] = listaClientes.get(i).getNome();
+                    registro[1] = listaClientes.get(i).getTelefone();
+                    registro[2] = endereco.getRua();
+                    registro[3] = endereco.getNumero();
+                    registro[4] = endereco.getComplemento();
+                    registro[5] = endereco.getBairro();
+                    registro[6] = endereco.getFrete();
+
+                    model.addRow(registro);
+
+
+
                 }
+
             }
         });
         cadastrarClienteButton.addActionListener(new ActionListener() {
@@ -174,5 +194,13 @@ public class Clientes extends JFrame{
                 dispose();
             }
         });
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        DefaultTableModel model = new DefaultTableModel(0, 7);
+        model.setColumnIdentifiers(Header);
+        table = new JTable(model);
+
     }
 }

@@ -414,7 +414,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="54c02" class="javax.swing.JList" binding="list1" default-binding="true">
+              <component id="2a488" class="javax.swing.JList" binding="list1" default-binding="true">
                 <constraints/>
                 <properties/>
               </component>

@@ -1,8 +1,8 @@
 package view;
 
-import model.Cliente;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +15,6 @@ public class FazerPedido extends JFrame{
     private JButton pesquisarButtonProduto;
     private JButton adicionarButtonProduto;
     private JButton finalizarButton;
-    private JList list1;
     private JComboBox categoriaComboBox;
     private JTextArea observacaoTextAreaTextArea;
     private JSpinner contadorQuantidade;
@@ -29,13 +28,28 @@ public class FazerPedido extends JFrame{
     private JLabel nomeProdutoLabel;
     private JLabel totalPedidoLabel;
     private JPanel mainPanel;
-    Cliente cliente = new Cliente();
+    private JList list1;
+    private JTable table1;
+    private JScrollPane scrollPane;
+//    Cliente cliente = new Cliente();
+
+
+
 
     public FazerPedido(String title){
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
+
+        scrollPane = new JScrollPane();
+        String[] Header = {"Nome", "Telefone", "Rua", "Numero", "Complemento", "Bairro", "Frete"};
+        list1 = new JList(Header);
+        scrollPane.add(list1);
+        add(scrollPane);
+
+
+
         clientesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,5 +131,6 @@ public class FazerPedido extends JFrame{
             }
         });
     }
+
 
 }
