@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class HistoricoCrediario {
     private int idCrediario, codPedido, codCliente;

@@ -2,25 +2,29 @@ package controller;
 
 import dao.*;
 import model.*;
-
-import view.Pedidos;
-import view.BalcaoDelivery;
-import javax.swing.*;
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 
 public class Main {
     public static void main(String[] args) throws ParseException {
-        BalcaoDelivery balcaoDelivery = new BalcaoDelivery("teste");
-        balcaoDelivery.setVisible(true);
 
+       ArrayList<Adicional> lista = null;
+       Adicional adicional = new Adicional();
+       AdicionalDao daoAdicional = new AdicionalDao();
 
+       int cod;
+       String nome;
+
+        adicional.setCodItem(3);
+        adicional.setCodItemAdicional(27);
+
+        //daoAdicional.excluirAdicionalItem(adicional);
+        lista = daoAdicional.listarAdicionaisItens();
+
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(
+                    lista.get(i).getCodItem() + ", " +
+                    lista.get(i).getCodItemAdicional() + ", " + ". \n ");
+        }
     }
-
-
-
 }
