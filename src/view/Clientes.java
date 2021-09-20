@@ -1,13 +1,17 @@
 package view;
 
+import dao.ClienteDao;
+import model.Cliente;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Clientes extends JFrame{
     private JButton clientesButton;
     private JButton pedidosButton;
-    private JButton relátoriosButton;
+    private JButton relatoriosButton;
     private JButton produtosButton;
     private JButton balcaoButton;
     private JTextField pesquisarTextField;
@@ -23,7 +27,7 @@ public class Clientes extends JFrame{
     private JButton cadastrarClienteButton;
     private JList list1;
     private JButton alterarClienteButton;
-    private JButton crediárioButton;
+    private JButton crediarioButton;
     private JButton selecionarClienteParaDeliveryButton;
     private JPanel mainPanel;
 
@@ -36,7 +40,9 @@ public class Clientes extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
-        crediárioButton.addActionListener(new ActionListener() {
+        ClienteDao clienteDao = new ClienteDao();
+
+        crediarioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Crediario crediario = new Crediario("Crediario");
@@ -52,7 +58,7 @@ public class Clientes extends JFrame{
                 dispose();
             }
         });
-        relátoriosButton.addActionListener(new ActionListener() {
+        relatoriosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Relatorios relatorios = new Relatorios("Relatorios");
@@ -77,9 +83,21 @@ public class Clientes extends JFrame{
             }
         });
         pesquisarButton.addActionListener(new ActionListener() {
+            ArrayList<Cliente> listaClientes = null;
             @Override
             public void actionPerformed(ActionEvent e) {
-                //verificar se é telefone ou nome e fazer select no banco
+
+                if(pesquisarTextField.getText().isEmpty()){
+                    listaClientes = clienteDao.listarClientes();
+                }else {
+                    if (telefoneRadioButton.isSelected()) {
+                        listaClientes = clienteDao.listarClientesPorTelefone(pesquisarTextField.getText());
+                    }
+                    else if(nomeRadioButton.isSelected()){
+                        listaClientes = clienteDao.listarClientesPorNome(pesquisarTextField.getText());
+                    }
+                }
+                ///PEGAR A LISTA E MANDAR PRO COMPONENTE VISUAL
             }
         });
         cadastrarClienteButton.addActionListener(new ActionListener() {

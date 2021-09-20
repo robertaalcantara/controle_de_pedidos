@@ -69,6 +69,37 @@ public class ClienteDao {
         }
     }
 
+    public ArrayList<Cliente> listarClientesPorNome(String nome){
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+
+        String sql = "SELECT * FROM cliente WHERE nome LIKE '" + nome + "%'";
+
+        try {
+            con = Conexao.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Cliente cliente = new Cliente();
+
+                cliente.setCodCliente(rs.getInt("cod_cliente"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setCodEndereco(rs.getInt("cod_endereco"));
+
+                listaClientes.add(cliente);
+            }
+            rs.close();
+            return listaClientes;
+
+        } catch (SQLException throwables) {
+            System.out.println("Erro: " + throwables);
+            return null;
+        } finally {
+            Conexao.closeConnection(con);
+        }
+    }
+
     public Cliente buscarCliente(int codCliente){
         Cliente cliente = new Cliente();
 
@@ -87,6 +118,37 @@ public class ClienteDao {
 
             rs.close();
             return cliente;
+
+        } catch (SQLException throwables) {
+            System.out.println("Erro: " + throwables);
+            return null;
+        } finally {
+            Conexao.closeConnection(con);
+        }
+    }
+
+    public ArrayList<Cliente> listarClientesPorTelefone(String telefone){
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+
+        String sql = "SELECT * FROM cliente WHERE telefone LIKE '%" + telefone + "%'";
+
+        try {
+            con = Conexao.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Cliente cliente = new Cliente();
+
+                cliente.setCodCliente(rs.getInt("cod_cliente"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setCodEndereco(rs.getInt("cod_endereco"));
+
+                listaClientes.add(cliente);
+            }
+            rs.close();
+            return listaClientes;
 
         } catch (SQLException throwables) {
             System.out.println("Erro: " + throwables);
