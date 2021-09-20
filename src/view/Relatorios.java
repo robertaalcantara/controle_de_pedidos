@@ -65,19 +65,19 @@ public class Relatorios extends JFrame{
         consulta1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //consulta 1
             }
         });
         consulta2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //consulta 2
             }
         });
         consulta3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //consulta 3
             }
         });
 

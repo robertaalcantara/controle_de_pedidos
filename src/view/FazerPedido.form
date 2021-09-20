@@ -38,7 +38,7 @@
               <separatorSize width="20" height="10"/>
             </properties>
           </component>
-          <component id="2d59c" class="javax.swing.JButton" binding="crediárioButton" default-binding="true">
+          <component id="2d59c" class="javax.swing.JButton" binding="crediarioButton">
             <constraints/>
             <properties>
               <text value="Crediário"/>
@@ -62,7 +62,7 @@
               <separatorSize width="30" height="10"/>
             </properties>
           </component>
-          <component id="87636" class="javax.swing.JButton" binding="relátoriosButton" default-binding="true">
+          <component id="87636" class="javax.swing.JButton" binding="relatoriosButton">
             <constraints/>
             <properties>
               <text value="Relátorios"/>
