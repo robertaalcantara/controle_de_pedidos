@@ -16,6 +16,12 @@ public class Crediario extends JFrame{
     private JButton consultarButton;
     private JButton excluirButton;
     private JPanel mainPanel;
+    private JRadioButton crediarioRadioButton;
+    private JRadioButton historicoCrediarioRadioButton;
+    private JButton alterarButton;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JButton salvarButton;
 
     public Crediario(String title){
         super(title);
