@@ -9,7 +9,7 @@ public class Produtos extends JFrame{
     private JTextField pesquisarNomeTextField;
     private JButton pesquisarButton;
     private JButton clientesButton;
-    private JButton relátoriosButton;
+    private JButton relatoriosButton;
     private JButton produtosButton;
     private JButton pedidosButton;
     private JButton balcaoButton;
@@ -21,6 +21,8 @@ public class Produtos extends JFrame{
     private JList list1;
     private JButton adicionarCategoriaButton;
     private JButton crediarioButton;
+    private JButton excluirButton;
+    private JButton excluirCategoriaButton;
 
     public Produtos(String title){
         super(title);
@@ -35,6 +37,14 @@ public class Produtos extends JFrame{
                 dispose();
             }
         });
+        crediarioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Crediario crediario = new Crediario("Crediario");
+                crediario.setVisible(true);
+                dispose();
+            }
+        });
         pedidosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,7 +53,7 @@ public class Produtos extends JFrame{
                 dispose();
             }
         });
-        relátoriosButton.addActionListener(new ActionListener() {
+        relatoriosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Relatorios relatorios = new Relatorios("Relatorios");
@@ -68,13 +78,28 @@ public class Produtos extends JFrame{
         adicionarCategoriaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //insert tabela categoria
+                AdicionarCategoria adicionarCategoria = new AdicionarCategoria("Adicionar Categoria");
+                adicionarCategoria.setVisible(true);
+                dispose();
             }
         });
         adicionarProdutoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //insert tabla produto
+                //insert tabela produto
+            }
+        });
+
+        excluirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //delete produto
+            }
+        });
+        excluirCategoriaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //delete categoria
             }
         });
     }
