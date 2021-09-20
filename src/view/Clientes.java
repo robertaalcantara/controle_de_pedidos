@@ -115,6 +115,7 @@ public class Clientes extends JFrame{
                 }
                 ///PEGAR A LISTA E MANDAR PRO COMPONENTE VISUAL
                 table = new JTable();
+
                 DefaultTableModel model =(DefaultTableModel) table.getModel();
 //              model.setColumnIdentifiers(Header);
                 model.setRowCount(0);
@@ -137,6 +138,8 @@ public class Clientes extends JFrame{
 
 
                 }
+                scrollPane1 = new JScrollPane(table);
+                mainPanel.add(scrollPane1);
 
             }
         });
