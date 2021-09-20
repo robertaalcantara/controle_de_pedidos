@@ -7,6 +7,7 @@ import model.Cliente;
 import model.Endereco;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -28,15 +29,24 @@ public class Clientes extends JFrame{
     private JTextField complementoTextField;
     private JTextField bairroTextField;
     private JButton cadastrarClienteButton;
-    private JList list1;
     private JButton alterarClienteButton;
     private JButton crediarioButton;
     private JButton selecionarClienteParaDeliveryButton;
     private JPanel mainPanel;
     private JTextField freteTextField;
+    private JTable table;
+    private JScrollPane scrollPane1;
 
-    private void createUIComponents() {
+    String Header[]= {"Nome", "Telefone", "Rua", "Numero", "Complemento", "Bairro", "Frete"};
+
+    private void createUIComponents(String nome, String telefone, String rua, int numero, String complemento, String bairro, double frete) {
         // TODO: place custom component creation code here
+        DefaultTableModel model = new DefaultTableModel(0,7);
+        model.setColumnIdentifiers(Header);
+        table = new JTable(model);
+        model.addRow(new Object[]{
+                nome, telefone, rua, numero, complemento, bairro, frete
+        });
     }
 
     public Clientes(String title){
@@ -103,6 +113,11 @@ public class Clientes extends JFrame{
                     }
                 }
                 ///PEGAR A LISTA E MANDAR PRO COMPONENTE VISUAL
+                for(Cliente c: clienteDao.listarClientes()){
+                    Endereco endereco = new Endereco();
+                    endereco = enderecoDao.buscarEndereco(c.getCodEndereco());
+                    createUIComponents(c.getNome(), c.getTelefone(), endereco.getRua(), endereco.getNumero(), endereco.getComplemento(), endereco.getBairro(), endereco.getFrete());
+                }
             }
         });
         cadastrarClienteButton.addActionListener(new ActionListener() {

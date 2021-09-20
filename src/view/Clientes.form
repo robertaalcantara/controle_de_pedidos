@@ -104,7 +104,7 @@
         </constraints>
         <properties/>
       </component>
-      <scrollpane id="96201">
+      <scrollpane id="96201" binding="scrollPane1" custom-create="true">
         <constraints>
           <grid row="5" column="1" row-span="9" col-span="18" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="600" height="400"/>
@@ -113,11 +113,9 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="cc57e" class="javax.swing.JList" binding="list1" default-binding="true">
+          <component id="5cca1" class="javax.swing.JTable" binding="table">
             <constraints/>
-            <properties>
-              <model/>
-            </properties>
+            <properties/>
           </component>
         </children>
       </scrollpane>
